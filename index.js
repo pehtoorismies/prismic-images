@@ -23,7 +23,6 @@ const getObjects = async (req, res, type) => {
   }
   // Set CORS headers for the main request
   res.set('Access-Control-Allow-Origin', '*');
-  // return res.status(200).send(req.headers);
 
   const validJWT = validateAccess(req.headers);
   if (!validJWT) {
