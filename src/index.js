@@ -64,7 +64,7 @@ const createJWT = () =>
   });
 
 const validateAccess = headers => {
-  const authHeader = R.prop('authorization', headers);
+  const authHeader = R.propOr('', 'authorization', headers);
   if (!authHeader.startsWith('Bearer ')) {
     return false;
   }
