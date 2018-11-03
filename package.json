@@ -40,6 +40,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "cors": "^2.8.4",
     "dotenv": "^6.1.0",
     "jsonwebtoken": "^8.3.0",
     "prismic-dom": "^2.1.0",
