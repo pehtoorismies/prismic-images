@@ -7,7 +7,9 @@ import {
   validateAccess,
 } from './src';
 
-const corsHandler = cors();
+const corsHandler = cors({
+  allowedHeaders: ['Content-Type', 'Authorization'],
+});
 
 const getter = {
   album: getAlbums,
