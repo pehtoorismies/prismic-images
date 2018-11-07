@@ -34,7 +34,7 @@
     "prettier": "^1.14.2",
     "serverless": "^1.32.0",
     "serverless-google-cloudfunctions": "^2.1.0",
-    "serverless-offline": "^3.25.10",
+    "serverless-offline": "^3.31.0",
     "serverless-webpack": "^5.2.0",
     "webpack": "^4.17.1",
     "webpack-node-externals": "^1.7.2"
@@ -42,9 +42,8 @@
   "dependencies": {
     "cors": "^2.8.4",
     "dotenv": "^6.1.0",
+    "googleapis": "^34.0.0",
     "jsonwebtoken": "^8.3.0",
-    "prismic-dom": "^2.1.0",
-    "prismic-javascript": "^1.5.0",
     "ramda": "^0.25.0"
   },
   "lint-staged": {

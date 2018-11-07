@@ -3,9 +3,9 @@ service: prismic-photos
 provider:
   name: google
   runtime: nodejs8
-  project: ourclan-220709
+  project: festive-airway-216914
   region: europe-west1
-  credentials: ~/.gcloud/ourclan.json
+  credentials: google-credentials.json
 
 custom:
   webpack:
@@ -13,19 +13,12 @@ custom:
     includeModules: true
 
 functions:
-  get_albums:
-    handler: albums
-    events:
-      - http: path
-  get_photos:
-    handler: photos
-    events:
-      - http: path
-  login:
-    handler: login
+  get_rules:
+    handler: rules
     events:
       - http: path
 
 plugins:
   - serverless-webpack
   - serverless-google-cloudfunctions
+  - serverless-offline
