@@ -22,7 +22,7 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      '.env'
+      '.env',
     ])
   ], 
   output: {

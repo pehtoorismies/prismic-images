@@ -1,15 +1,15 @@
 import { google } from 'googleapis';
 // const google = require('googleapis')
 
-const clientEmail = '';
-const privateKey = '';
-const spreadsheetId = '';
-
 const scopes = ['https://www.googleapis.com/auth/spreadsheets.readonly'].join(
   ' '
 );
 
 const fetchSheetData = async range => {
+  const clientEmail = process.env.CLIENT_EMAIL;
+  const privateKey = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
+  const spreadsheetId = process.env.SPREADSHEET_ID;
+
   const client = await google.auth
     .getClient({
       credentials: {
