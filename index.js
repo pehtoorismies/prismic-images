@@ -1,5 +1,10 @@
+import { fetchSheets } from "./src/sheets-fetcher";
+import { parser } from './src/ruleparser'
+
 const rules = async (req, res) => {
-  return res.status(200).send()
+  const parsed = await fetchSheets()
+  const data = parser(parsed)
+  return res.status(200).send(JSON.stringify(data))
 };
 
-module.exports = rules;
+export { rules }

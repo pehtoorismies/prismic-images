@@ -7,6 +7,10 @@ provider:
   region: europe-west1
   credentials: ~/google-credentials.json
 
+  custom:
+    webpack:
+      webpackConfig: ./webpack.config.js
+      includeModules: true
 functions:
   parseRules:
     handler: rules
@@ -14,4 +18,5 @@ functions:
       - http: path
 
 plugins:
+  - serverless-webpack
   - serverless-google-cloudfunctions
