@@ -1,24 +1,17 @@
-service: prismic-photos
+service: parse-mechanics
 
 provider:
   name: google
   runtime: nodejs8
   project: festive-airway-216914
   region: europe-west1
-  credentials: google-credentials.json
-
-custom:
-  webpack:
-    webpackConfig: ./webpack.config.js
-    includeModules: true
+  credentials: ~/google-credentials.json
 
 functions:
-  get_rules:
+  parseRules:
     handler: rules
     events:
       - http: path
 
 plugins:
-  - serverless-webpack
   - serverless-google-cloudfunctions
-  - serverless-offline
