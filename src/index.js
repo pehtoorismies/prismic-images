@@ -22,6 +22,11 @@ const parseAlbum = a => ({
   mainImage: a.data.mainimage,
 });
 
+const parseDetailedAlbum = doc => ({
+  ...parseAlbum(doc),
+  images: doc.data.images,
+});
+
 const getApi = async () => {
   const api = await Prismic.getApi(apiEndpoint, { accessToken: apiToken });
   return api;
@@ -36,21 +41,13 @@ const getAlbums = async () => {
   );
 
   const albums = R.map(parseAlbum, response.results);
-  // return results;
   return albums;
 };
-const getPhotos = async () => {
+const getAlbum = async uid => {
   const api = await getApi();
-  const response = await api.query(
-    Prismic.Predicates.at('document.type', 'album'),
-    {
-      orderings: '[my.album.albumtitle desc]',
-    }
-  );
-
-  const albums = R.map(parseAlbum, response.results);
-  // return results;
-  return albums;
+  const document = await api.getByUID('album', uid);
+  const album = parseDetailedAlbum(document);
+  return album;
 };
 
 const validPassword = R.equals(sitePassword);
@@ -77,4 +74,4 @@ const validateAccess = headers => {
   }
 };
 
-export { getAlbums, getPhotos, validPassword, createJWT, validateAccess };
+export { getAlbums, getAlbum, validPassword, createJWT, validateAccess };

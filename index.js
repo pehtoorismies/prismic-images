@@ -1,7 +1,8 @@
 import cors from 'cors';
+import Path from 'path-parser';
 import {
   getAlbums,
-  getPhotos,
+  getAlbum,
   validPassword,
   createJWT,
   validateAccess,
@@ -11,29 +12,26 @@ const corsHandler = cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 });
 
-const getter = {
-  album: getAlbums,
-  photo: getPhotos,
-};
-
-const getObjects = async (req, res, type) => {
-  const validJWT = validateAccess(req.headers);
-  if (!validJWT) {
-    return res.status(401).send('Access denied');
+const getUid = path => {
+  const t = Path.createPath('/:uid');
+  const parsed = t.test(path);
+  if (parsed) {
+    return parsed.uid;
   }
-  const result = await getter[type].call();
-  const json = JSON.stringify(result);
-  return res.status(200).send(json);
+  return null;
 };
 
 const albums = async (request, response) =>
-  corsHandler(request, response, () => {
-    getObjects(request, response, 'album');
-  });
-
-const photos = async (request, response) =>
-  corsHandler(request, response, () => {
-    getObjects(request, response, 'photo');
+  corsHandler(request, response, async () => {
+    const validJWT = validateAccess(request.headers);
+    if (!validJWT) {
+      return response.status(401).send('Access denied');
+    }
+    const uid = getUid(request.path || '');
+    const query = uid ? getAlbum : getAlbums;
+    const result = await query.call(null, uid);
+    const json = JSON.stringify(result);
+    return response.status(200).send(json);
   });
 
 const loginFn = (request, response) => {
@@ -54,4 +52,4 @@ const login = (request, response) => {
   });
 };
 
-export { albums, photos, login };
+export { albums, login };

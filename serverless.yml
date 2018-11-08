@@ -17,10 +17,6 @@ functions:
     handler: albums
     events:
       - http: path
-  get_photos:
-    handler: photos
-    events:
-      - http: path
   login:
     handler: login
     events:
