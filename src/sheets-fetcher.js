@@ -1,5 +1,4 @@
 import { google } from 'googleapis';
-// const google = require('googleapis')
 
 const scopes = ['https://www.googleapis.com/auth/spreadsheets.readonly'].join(
   ' '
@@ -35,7 +34,17 @@ const fetchSheetData = async range => {
 };
 
 const fetchSheets = async () => {
-  const sheetData = await fetchSheetData('phases!a1:e4');
+  const sheetData = {};
+  sheetData.phases = await fetchSheetData('phases!a1:e512');
+  sheetData.leadershipStyles = await fetchSheetData(
+    'leadership_styles!a1:h512'
+  );
+  sheetData.priorities = await fetchSheetData('priorities!a1:h512');
+  sheetData.occurrences = await fetchSheetData('random_events!a1:h512');
+  sheetData.traits = await fetchSheetData('traits!a1:h512');
+  sheetData.actions = await fetchSheetData('actions!a1:h512');
+  sheetData.pawns = await fetchSheetData('pawns!a1:g512');
+  sheetData.challenges = await fetchSheetData('challenges!a1:h512');
   return sheetData;
 };
 
