@@ -11,11 +11,15 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
+
 functions:
   parseRules:
     handler: rules
     events:
       - http: path
+
+
+
 
 plugins:
   - serverless-webpack

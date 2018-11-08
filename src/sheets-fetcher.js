@@ -40,11 +40,11 @@ const fetchSheets = async () => {
     'leadership_styles!a1:h512'
   );
   sheetData.priorities = await fetchSheetData('priorities!a1:h512');
-  sheetData.occurrences = await fetchSheetData('random_events!a1:h512');
+  sheetData.occurrences = await fetchSheetData('random_events!a1:j512');
   sheetData.traits = await fetchSheetData('traits!a1:h512');
   sheetData.actions = await fetchSheetData('actions!a1:h512');
   sheetData.pawns = await fetchSheetData('pawns!a1:g512');
-  sheetData.challenges = await fetchSheetData('challenges!a1:h512');
+  sheetData.challenges = await fetchSheetData('challenges!a1:k512');
   return sheetData;
 };
 

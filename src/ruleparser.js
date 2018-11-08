@@ -1,26 +1,18 @@
 import * as R from 'ramda';
 
 const array2objects = data => {
-  const parsed = {};
-  let objectList;
-  let headers;
+  const objects = {};
   R.keysIn(data).forEach(key => {
-    objectList = [];
-    headers = data[key][0]; //eslint-disable-line
-    R.range(1, data[key].length).forEach(idx => {
-      objectList.push(R.zipObj(headers, data[key][idx]));
-    });
-    parsed[key] = objectList;
+    const headers = R.head(data[key]);
+    const addHeaders = line => R.zipObj(headers, line);
+    objects[key] = R.map(addHeaders, R.tail(data[key]));
   });
-  return parsed;
+  return objects;
 };
 
 const parseRefs = (refs, data, name) => {
-  const parsed = [];
-  refs.split(',').forEach(ref => {
-    parsed.push(R.find(R.propEq('id', `${name}_${ref.trim()}`), data));
-  });
-  return parsed;
+  const find = ref => R.find(R.propEq('id', `${name}_${ref.trim()}`), data);
+  return R.map(find, refs.split(','));
 };
 
 const parseChallenges = data => {
