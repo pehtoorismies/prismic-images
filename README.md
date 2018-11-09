@@ -1,16 +1,14 @@
 # Env
 
 ```
-PRISMIC_SECRET=secret
-PRISMIC_API=https://.....prismic.io/api/v2
-PASSWORD=secret
-JWT_SECRET=secret
-JWT_AUD=aud
-JWT_ISS=iss
+CLIENT_EMAIL=
+PRIVATE_KEY=
+SPREADSHEET_ID=
 ```
+See Keybase for file contents
 
 # Deploy
 
 ```
-yarn deloy
+sls deploy
 ```
