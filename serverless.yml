@@ -17,10 +17,7 @@ functions:
     handler: rules
     events:
       - http: path
-
-
-
-
+  
 plugins:
   - serverless-webpack
   - serverless-google-cloudfunctions

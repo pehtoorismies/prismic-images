@@ -28,6 +28,9 @@ const parseChallenges = data => {
         'randomEvent'
       ),
       phases: parseRefs(challenge.phase_id, data.phases, 'phase'),
+      project: {
+        position: challenge.project_position,
+      },
     });
   });
   return parsedChallenges;

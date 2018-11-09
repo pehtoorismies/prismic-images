@@ -44,7 +44,7 @@ const fetchSheets = async () => {
   sheetData.traits = await fetchSheetData('traits!a1:h512');
   sheetData.actions = await fetchSheetData('actions!a1:h512');
   sheetData.pawns = await fetchSheetData('pawns!a1:g512');
-  sheetData.challenges = await fetchSheetData('challenges!a1:k512');
+  sheetData.challenges = await fetchSheetData('challenges!a1:l512');
   return sheetData;
 };
 
