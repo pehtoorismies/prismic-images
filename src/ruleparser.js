@@ -40,7 +40,7 @@ const parseActions = (actions, traits) => {
       )[0],
       trait: parseRefs(action.trait_custom, traits.custom, 'trait_custom')[0],
       phases: action.phases || [],
-      cost: action.time_cost,
+      cost: asInt(action.time_cost),
     });
   });
   return parsedActions;
@@ -57,7 +57,7 @@ const parseTraits = traits => {
       c: asInt(trait.c),
     },
     project: asInt(trait.captain),
-    cost: trait.time_cost,
+    cost: asInt(trait.time_cost),
   });
   return R.map(parseSingle, traits);
 };
@@ -77,7 +77,7 @@ const parsePawns = pawns => {
     name: pawn.name,
     id: pawn.id,
     gender: pawn.gender,
-    position: parseInt(pawn.start_pos, 10),
+    position: asInt(pawn.start_pos),
     type: getType({ d: pawn.d, i: pawn.i, s: pawn.s, c: pawn.c }),
   });
   return R.map(parseSingle, pawns);
@@ -107,12 +107,12 @@ const parseChallenges = data => {
       'randomEvent'
     );
     parsedChallenges.push({
-      /* name: challenge.name,
+      ...challenge,
+      /* title: challenge.title,
       description: challenge.description,
       objective: challenge.objective,
       howToPlay: challenge.howToPlay, */
-      ...challenge,
-      time: asInt(challenge.time),
+      credit: asInt(challenge.credit),
       pawns: parsePawns(pawns),
       actions: parseRefs(challenge.action_id, data.actions, 'action'),
       occurrences: parseOccurrences(occurrences),
