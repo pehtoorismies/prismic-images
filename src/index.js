@@ -20,6 +20,7 @@ const parseAlbum = a => ({
   title: asText(a.data.albumtitle),
   uid: a.uid,
   mainImage: a.data.mainimage,
+  order: a.data.order,
 });
 
 const parseDetailedAlbum = doc => ({
