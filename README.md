@@ -12,5 +12,5 @@ JWT_ISS=iss
 # Deploy
 
 ```
-yarn deloy
+yarn deploy
 ```
